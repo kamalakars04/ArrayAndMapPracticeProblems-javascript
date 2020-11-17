@@ -14,8 +14,8 @@ while(!checkDictionary())
 }
 const mapSort = new Map([...DieNumberMap.entries()].sort((a, b) => a[1] - b[1]));
 console.log("Total no of chances are : "+DieMap.size);
-console.log("Maximum repeated : "+ Array.from(DieNumberMap.keys())[5]);
-console.log("Minimum repeated : "+ Array.from(DieNumberMap.keys())[0]);
+console.log("Maximum repeated : "+ Array.from(mapSort.keys())[5]);
+console.log("Minimum repeated : "+ Array.from(mapSort.keys())[0]);
 
 function checkDictionary()
 {
@@ -38,6 +38,29 @@ function checkDictionary()
 }
 
 // Individual birthday
+let birthMonthMap = new Map();
+for(i=0;i<50;i++)
+{
+    let birthMonth = Math.ceil(Math.random()*100)%12;
+    if(birthMonth > 0)
+    {
+        if(birthMonthMap.has(birthMonth))
+        birthMonthMap.get(birthMonth).push(i);
+    
+        else
+        {
+            let x = new Array();
+            birthMonthMap.set(birthMonth,new Array());
+            birthMonthMap.get(birthMonth).push(i);
+        }
+    }
+}
+let mapSort1 = new Map([...birthMonthMap.entries()].sort((a,b) => a[0]-b[0]));
+for([key,value] of mapSort1)
+{
+    console.log("Induvidual id for persons with birthMonth "+key+" is "+value);
+}
+
 
 
 
